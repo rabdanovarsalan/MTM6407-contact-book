@@ -1,0 +1,21 @@
+@use "reset";
+@use "utilities";
+@use "text";
+
+$color-gold: #ffb900;
+$color-blue: #005096;
+$color-grey: #969696;
+
+body, html {
+  overflow-x: hidden;
+}
+
+header, main, footer {
+  margin: 1.00rem 0;
+}
+
+code {
+  font-family: monospace;
+  padding: 0 0.2rem;
+  background-color: lighten($color-grey, 30%);
+}
