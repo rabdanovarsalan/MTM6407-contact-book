@@ -4,6 +4,7 @@ import Contacts from '@/components/Contacts.vue';
 
 <template>
   <h1>Contact Book</h1>
+  
   <Contacts />
 </template>
 

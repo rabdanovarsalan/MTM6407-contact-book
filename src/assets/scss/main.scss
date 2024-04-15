@@ -19,3 +19,83 @@ code {
   padding: 0 0.2rem;
   background-color: lighten($color-grey, 30%);
 }
+
+@mixin button-style {
+  border-radius: 0.25rem;
+  border: 1px solid lighten($color-grey, 30%);
+  background-color: white;
+  color: lighten($color-grey, 0%);
+  transition: border ease-out 0.3s;
+
+  &:hover, &:focus {
+    transition: border 0.1s;
+    @content;
+  }
+}
+
+.contacts {
+  margin: 2.00rem 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.sort-firstName, .sort-lastName {
+  @include button-style {
+    color: inherit;
+
+    &.edit:hover, &.edit:focus {
+      border-color: green;
+      color: green;
+    }
+
+    &.delete:hover, &.delete:focus {
+      border-color: red;
+      color: red;
+    }
+  }
+}
+
+.contact {
+  border: 1px solid lighten($color-grey, 30%);
+  padding: 0.50rem 0.50rem 0.50rem 1.00rem;
+  display: flex;
+  justify-content: space-between;
+
+
+  .name {
+    display: flex;
+    align-items: center;
+  }
+
+  .buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.50rem;
+
+    i {
+      font-size: 1.50rem;
+    }
+    
+    .edit, .delete {
+      width: 2.5rem;
+      height: 2.5rem;
+
+      @include button-style {
+        color: inherit;
+    
+        &.edit:hover, &.edit:focus {
+          border-color: blue;
+          background-color: blue;
+          color: white;
+        }
+    
+        &.delete:hover, &.delete:focus {
+          border-color: red;
+          background-color: red;
+          color: white;
+        }
+      }
+    }
+    
+  }
+}

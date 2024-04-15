@@ -2,73 +2,52 @@
   "contacts": [
     {
       "id": 1,
-      "nameFirst": "Arsalan",
-      "nameLast": "Rabdanov",
-      "email": "rabd0001@algonquinlive.com",
-      "phone": "+1 (613) 890-3963"
-    },
-    {
-      "id": 2,
       "nameFirst": "Emily",
       "nameLast": "Johnson",
       "email": "emily.johnson@example.com",
       "phone": "+1 (555) 123-4567"
     },
     {
-      "id": 3,
+      "id": 2,
       "nameFirst": "John",
       "nameLast": "Doe",
       "email": "john.doe@example.com",
       "phone": "+1 (555) 987-6543"
     },
     {
-      "id": 4,
+      "id": 3,
       "nameFirst": "Alice",
       "nameLast": "Smith",
       "email": "alice.smith@example.com",
       "phone": "+1 (555) 111-2222"
     },
     {
-      "id": 5,
+      "id": 4,
       "nameFirst": "David",
       "nameLast": "Brown",
       "email": "david.brown@example.com",
       "phone": "+1 (555) 333-4444"
     },
     {
-      "id": 6,
+      "id": 5,
       "nameFirst": "Emma",
       "nameLast": "Taylor",
       "email": "emma.taylor@example.com",
       "phone": "+1 (555) 555-6666"
     },
     {
-      "id": 7,
+      "id": 6,
       "nameFirst": "Michael",
       "nameLast": "Wilson",
       "email": "michael.wilson@example.com",
       "phone": "+1 (555) 777-8888"
     },
     {
-      "id": 8,
+      "id": 7,
       "nameFirst": "Olivia",
       "nameLast": "Martinez",
       "email": "olivia.martinez@example.com",
       "phone": "+1 (555) 999-0000"
-    },
-    {
-      "id": 9,
-      "nameFirst": "William",
-      "nameLast": "Anderson",
-      "email": "william.anderson@example.com",
-      "phone": "+1 (555) 222-3333"
-    },
-    {
-      "id": 10,
-      "nameFirst": "Sophia",
-      "nameLast": "Garcia",
-      "email": "sophia.garcia@example.com",
-      "phone": "+1 (555) 444-5555"
     }
   ]
 }
