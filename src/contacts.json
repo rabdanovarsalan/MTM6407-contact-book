@@ -2,52 +2,27 @@
   "contacts": [
     {
       "id": 1,
-      "nameFirst": "Emily",
-      "nameLast": "Johnson",
-      "email": "emily.johnson@example.com",
-      "phone": "+1 (555) 123-4567"
+      "nameFirst": "Arsalan",
+      "nameLast": "Rabdanov",
+      "email": "rabd0001@algonquinlive.com",
+      "phone": "+1 (613) 890-3963",
+      "route": "/contact/1"
     },
     {
       "id": 2,
-      "nameFirst": "John",
-      "nameLast": "Doe",
-      "email": "john.doe@example.com",
-      "phone": "+1 (555) 987-6543"
+      "nameFirst": "Alan",
+      "nameLast": "Wake",
+      "email": "alanwake@darkplace.com",
+      "phone": "+1 (123) 246-1112",
+      "route": "/contact/2"
     },
     {
       "id": 3,
-      "nameFirst": "Alice",
-      "nameLast": "Smith",
-      "email": "alice.smith@example.com",
-      "phone": "+1 (555) 111-2222"
-    },
-    {
-      "id": 4,
-      "nameFirst": "David",
-      "nameLast": "Brown",
-      "email": "david.brown@example.com",
-      "phone": "+1 (555) 333-4444"
-    },
-    {
-      "id": 5,
-      "nameFirst": "Emma",
-      "nameLast": "Taylor",
-      "email": "emma.taylor@example.com",
-      "phone": "+1 (555) 555-6666"
-    },
-    {
-      "id": 6,
-      "nameFirst": "Michael",
-      "nameLast": "Wilson",
-      "email": "michael.wilson@example.com",
-      "phone": "+1 (555) 777-8888"
-    },
-    {
-      "id": 7,
-      "nameFirst": "Olivia",
-      "nameLast": "Martinez",
-      "email": "olivia.martinez@example.com",
-      "phone": "+1 (555) 999-0000"
+      "nameFirst": "Mike",
+      "nameLast": "Enslin",
+      "email": "mikeenslin@roomofhell.com",
+      "phone": "+1 (666) 999-1408",
+      "route": "/contact/3"
     }
   ]
 }

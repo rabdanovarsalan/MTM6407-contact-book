@@ -74,12 +74,14 @@ body, input {
 }
 
 h1 {
+  margin: 1rem 0 2rem 0;
   font-size: 3rem;
   line-height: 3rem;
 }
 
 body, html {
   overflow-x: hidden;
+  text-align: center;
 }
 
 header, main, footer {
@@ -92,34 +94,21 @@ code {
   background-color: #e3e3e3;
 }
 
+#form-contact-search {
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
 .contacts {
   margin: 2rem 0;
   display: grid;
   gap: 1rem;
 }
 
-.sort-firstName, .sort-lastName {
-  border-radius: 0.25rem;
-  border: 1px solid #e3e3e3;
-  background-color: white;
-  color: #969696;
-  transition: border ease-out 0.3s;
-}
-.sort-firstName:hover, .sort-firstName:focus, .sort-lastName:hover, .sort-lastName:focus {
-  transition: border 0.1s;
-  color: inherit;
-}
-.sort-firstName:hover.edit:hover, .sort-firstName:hover.edit:focus, .sort-firstName:focus.edit:hover, .sort-firstName:focus.edit:focus, .sort-lastName:hover.edit:hover, .sort-lastName:hover.edit:focus, .sort-lastName:focus.edit:hover, .sort-lastName:focus.edit:focus {
-  border-color: green;
-  color: green;
-}
-.sort-firstName:hover.delete:hover, .sort-firstName:hover.delete:focus, .sort-firstName:focus.delete:hover, .sort-firstName:focus.delete:focus, .sort-lastName:hover.delete:hover, .sort-lastName:hover.delete:focus, .sort-lastName:focus.delete:hover, .sort-lastName:focus.delete:focus {
-  border-color: red;
-  color: red;
-}
-
 .contact {
   border: 1px solid #e3e3e3;
+  border-radius: 0.5rem;
   padding: 0.5rem 0.5rem 0.5rem 1rem;
   display: flex;
   justify-content: space-between;
@@ -150,13 +139,37 @@ code {
   color: inherit;
 }
 .contact .buttons .edit:hover.edit:hover, .contact .buttons .edit:hover.edit:focus, .contact .buttons .edit:focus.edit:hover, .contact .buttons .edit:focus.edit:focus, .contact .buttons .delete:hover.edit:hover, .contact .buttons .delete:hover.edit:focus, .contact .buttons .delete:focus.edit:hover, .contact .buttons .delete:focus.edit:focus {
-  border-color: blue;
-  background-color: blue;
+  border-color: #005096;
+  background-color: #005096;
   color: white;
 }
 .contact .buttons .edit:hover.delete:hover, .contact .buttons .edit:hover.delete:focus, .contact .buttons .edit:focus.delete:hover, .contact .buttons .edit:focus.delete:focus, .contact .buttons .delete:hover.delete:hover, .contact .buttons .delete:hover.delete:focus, .contact .buttons .delete:focus.delete:hover, .contact .buttons .delete:focus.delete:focus {
   border-color: red;
   background-color: red;
+  color: white;
+}
+.contact .buttons .edit:hover.edit:active, .contact .buttons .edit:hover.delete:active, .contact .buttons .edit:focus.edit:active, .contact .buttons .edit:focus.delete:active, .contact .buttons .delete:hover.edit:active, .contact .buttons .delete:hover.delete:active, .contact .buttons .delete:focus.edit:active, .contact .buttons .delete:focus.delete:active {
+  border-color: black;
+  background-color: black;
+  color: white;
+}
+.contact .buttons .edit:active, .contact .buttons .delete:active {
+  transition: border 0.1s;
+  color: inherit;
+}
+.contact .buttons .edit:active.edit:hover, .contact .buttons .edit:active.edit:focus, .contact .buttons .delete:active.edit:hover, .contact .buttons .delete:active.edit:focus {
+  border-color: #005096;
+  background-color: #005096;
+  color: white;
+}
+.contact .buttons .edit:active.delete:hover, .contact .buttons .edit:active.delete:focus, .contact .buttons .delete:active.delete:hover, .contact .buttons .delete:active.delete:focus {
+  border-color: red;
+  background-color: red;
+  color: white;
+}
+.contact .buttons .edit:active.edit:active, .contact .buttons .edit:active.delete:active, .contact .buttons .delete:active.edit:active, .contact .buttons .delete:active.delete:active {
+  border-color: black;
+  background-color: black;
   color: white;
 }
 

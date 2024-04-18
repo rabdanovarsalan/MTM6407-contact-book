@@ -1,69 +1,115 @@
-<script setup>
-import Contact from './Contact.vue';
-import SearchBar from './SearchBar.vue';
+<script>
 import contactData from '@/contacts.json';
-import { ref } from 'vue';
+import Button from './Button.vue' // Button component used only for edit and delete buttons
 
-const contacts = ref(contactData.contacts);
-
-const sortingOptions = [
-  {
-    value: "nameLast",
-    message: "Sort by Last Name",
+export default {
+  components: {
+    Button,
   },
-  {
-    value: "nameFirst",
-    message: "Sort by First Name",
+  data() {
+    return {
+      contacts: [],
+      selectedSortingOption: "nameLast", // By default, contacts are sorted by Last Name
+      searching: "", // Empty until there is input in searchbox. 
+      sortingOptions: [
+        {
+          value: "nameFirst",
+          message: "Sort by First Name",
+        },
+        {
+          value: "nameLast",
+          message: "Sort by Last Name",
+        },
+      ]
+    }
   },
-]
+  async created() {
+    // Retrieve contacts from local storage
+    let data = localStorage.getItem('contacts');
 
-const sortContactsByLastName = () => {
-  contacts.sort((a, b) => {
-    if (a.nameLast.toUpperCase() < b.nameLast.toUpperCase()) {
-      return -1;
-    } else if (a.nameLast.toUpperCase() > b.nameLast.toUpperCase()) {
-      return 1;
+    // If data present -> parse the JSON
+    if (data) {
+      this.contacts = JSON.parse(data);
+    // If data empty -> get default contacts from contacts.json and save them in Local Storage
     } else {
-      return 0;
+      this.contacts = contactData.contacts;
+      localStorage.setItem('contacts', JSON.stringify(this.contacts));
     }
-  });
-};
+  },
+  computed: {
+    sortedContacts() {
+      let filteredContacts = this.contacts.slice();
 
-const sortContactsByFirstName = () => {
-  contacts.sort((a, b) => {
-    if (a.nameFirst.toUpperCase() < b.nameFirst.toUpperCase()) {
-      return -1;
-    } else if (a.nameFirst.toUpperCase() > b.nameFirst.toUpperCase()) {
-      return 1;
-    } else {
-      return 0;
+      // Responsible for Search
+      if (this.searching) {
+        filteredContacts = filteredContacts.filter(contact => 
+          contact.nameLast.toLowerCase().includes(this.searching.toLowerCase()) ||
+          contact.nameFirst.toLowerCase().includes(this.searching.toLowerCase())
+        )
+      }
+
+      // Responsible for Sorting
+      if (this.selectedSortingOption === "nameLast") {
+        return filteredContacts.sort((a, b) => a.nameLast.localeCompare(b.nameLast));
+      } 
+      else if (this.selectedSortingOption === "nameFirst"){
+        return filteredContacts.sort((a, b) => a.nameFirst.localeCompare(b.nameFirst));
+      }
+      else {
+        localStorage.setItem('selectedSortingOption', "nameLast");
+        return filteredContacts.sort((a, b) => a.nameLast.localeCompare(b.nameLast));
+      }
     }
-  });
-};
-
-const handleSorting = () => {
-  if (selectedSortingOption.value === "nameLast") {
-    sortContactsByLastName();
-  } else if (selectedSortingOption.value === "nameFirst") {
-    sortContactsByFirstName();
+  },
+  methods: {
+    async handleSorting() {
+      // Selected Sorting option is saved in Local Storage
+      localStorage.setItem('selectedSortingOption', this.selectedSortingOption);
+    },
+    deleteContact(id) {
+      // Pressing Delete button deletes the associated Contact via id
+      const index = this.contacts.findIndex(contact => contact.id == id);
+      if (index !== -1) {
+        // Remove the contact from the contacts array
+        this.contacts.splice(index, 1);
+        // Update Local Storage
+        localStorage.setItem('contacts', JSON.stringify(this.contacts));
+      }
+    },
+  },
+  async mounted() {
+    // Retrieve selected sorting option from localStorage on component mount
+    let selectedOption = localStorage.getItem('selectedSortingOption');
+    if (selectedOption) {
+      this.selectedSortingOption = selectedOption;
+    }
   }
 }
-
 </script>
 
 <template>
-  <SearchBar />
-  <select v-model="sortingOptions" @submit="handleSorting">
-    <option v-for="(sortingOption, index) in sortingOptions" :key="index" :value="sortingOption.value">{{sortingOption.message}}</option>
-  </select>
+  <div>
+    <form id="form-contact-search">
+      <input v-model="searching" type="search" id="contact-search" placeholder="Search...">
+    </form>
 
-  <ul class="contacts">
-    <li v-for="contact in contacts" :key="contact.id">
-      <Contact :firstName="contact.nameFirst" :lastName="contact.nameLast"/>
-    </li>
-  </ul>
+    <select v-model="selectedSortingOption" @change="handleSorting">
+      <option v-for="(option, index) in sortingOptions" :key="index" :value="option.value">{{ option.message }}</option>
+    </select>
+
+    <ul class="contacts">
+      <li v-for="contact in sortedContacts" :key="contact.id">
+        <div class="contact">
+          <div class="name">
+            <RouterLink :to="contact.route">{{ contact.nameLast }}, {{ contact.nameFirst }}</RouterLink>
+          </div>
+
+          <div class="buttons">
+            <Button btnClass="edit"/>
+            <Button btnClass="delete" @click="deleteContact(contact.id)"/>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
 </template>
-
-<style scoped>
-/* Your scoped styles */
-</style>

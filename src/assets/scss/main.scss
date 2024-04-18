@@ -8,6 +8,7 @@ $color-grey: #969696;
 
 body, html {
   overflow-x: hidden;
+  text-align: center;
 }
 
 header, main, footer {
@@ -31,6 +32,17 @@ code {
     transition: border 0.1s;
     @content;
   }
+
+  &:active {
+    transition: border 0.1s;
+    @content;
+  }
+}
+
+#form-contact-search {
+  display: flex;
+  justify-content: center;
+  gap: 0.250rem;
 }
 
 .contacts {
@@ -39,24 +51,9 @@ code {
   gap: 1rem;
 }
 
-.sort-firstName, .sort-lastName {
-  @include button-style {
-    color: inherit;
-
-    &.edit:hover, &.edit:focus {
-      border-color: green;
-      color: green;
-    }
-
-    &.delete:hover, &.delete:focus {
-      border-color: red;
-      color: red;
-    }
-  }
-}
-
 .contact {
   border: 1px solid lighten($color-grey, 30%);
+  border-radius: 0.5rem;
   padding: 0.50rem 0.50rem 0.50rem 1.00rem;
   display: flex;
   justify-content: space-between;
@@ -84,8 +81,8 @@ code {
         color: inherit;
     
         &.edit:hover, &.edit:focus {
-          border-color: blue;
-          background-color: blue;
+          border-color: $color-blue;
+          background-color: $color-blue;
           color: white;
         }
     
@@ -94,8 +91,13 @@ code {
           background-color: red;
           color: white;
         }
+
+        &.edit:active, &.delete:active {
+          border-color: black;
+          background-color: black;
+          color: white;
+        }
       }
     }
-    
   }
 }
