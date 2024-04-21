@@ -8,9 +8,7 @@ const copyright = {
 </script>
 
 <template>
-  <main class="container">
-    <RouterView />
-  </main>
+  <RouterView />
 </template>
 
 <style scoped>

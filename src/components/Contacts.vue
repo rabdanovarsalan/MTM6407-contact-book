@@ -1,6 +1,38 @@
+
+<template>
+  <div class="functionality">
+    <form id="form-contact-search">
+      <input v-model="searching" type="search" id="contact-search" placeholder="Search...">
+    </form>
+
+    <select v-model="selectedSortingOption" @change="handleSorting">
+      <option v-for="(option, index) in sortingOptions" :key="index" :value="option.value">{{ option.message }}</option>
+    </select>
+  </div>
+
+
+  <ul class="contacts">
+    <li v-for="contact in sortedContacts" :key="contact.id">
+      <div class="contact">
+        <div class="name">
+          <RouterLink :to="'contact/' + contact.id">
+            <h2>{{ contact.nameFirst }} {{ contact.nameLast }}</h2>
+          </RouterLink>
+        </div>
+
+        <div class="buttons">
+          <Button btnClass="delete" @click="deleteContact(contact.id)" />
+        </div>
+      </div>
+    </li>
+  </ul>
+</template>
+
+
+
 <script>
 import contactData from '@/contacts.json';
-import Button from './Button.vue' // Button component used only for edit and delete buttons
+import Button from './Button.vue'
 
 export default {
   components: {
@@ -9,8 +41,8 @@ export default {
   data() {
     return {
       contacts: [],
-      selectedSortingOption: "nameLast", // By default, contacts are sorted by Last Name
-      searching: "", // Empty until there is input in searchbox. 
+      selectedSortingOption: "nameLast",
+      searching: "",
       sortingOptions: [
         {
           value: "nameFirst",
@@ -24,13 +56,8 @@ export default {
     }
   },
   async created() {
-    // Retrieve contacts from local storage
-    let data = localStorage.getItem('contacts');
-
-    // If data present -> parse the JSON
-    if (data) {
-      this.contacts = JSON.parse(data);
-    // If data empty -> get default contacts from contacts.json and save them in Local Storage
+    if (localStorage.getItem('contacts')) {
+      this.contacts = JSON.parse(localStorage.getItem('contacts'));
     } else {
       this.contacts = contactData.contacts;
       localStorage.setItem('contacts', JSON.stringify(this.contacts));
@@ -40,7 +67,6 @@ export default {
     sortedContacts() {
       let filteredContacts = this.contacts.slice();
 
-      // Responsible for Search
       if (this.searching) {
         filteredContacts = filteredContacts.filter(contact => 
           contact.nameLast.toLowerCase().includes(this.searching.toLowerCase()) ||
@@ -48,7 +74,6 @@ export default {
         )
       }
 
-      // Responsible for Sorting
       if (this.selectedSortingOption === "nameLast") {
         return filteredContacts.sort((a, b) => a.nameLast.localeCompare(b.nameLast));
       } 
@@ -63,22 +88,17 @@ export default {
   },
   methods: {
     async handleSorting() {
-      // Selected Sorting option is saved in Local Storage
       localStorage.setItem('selectedSortingOption', this.selectedSortingOption);
     },
     deleteContact(id) {
-      // Pressing Delete button deletes the associated Contact via id
-      const index = this.contacts.findIndex(contact => contact.id == id);
+      let index = this.contacts.findIndex(contact => contact.id == id);
       if (index !== -1) {
-        // Remove the contact from the contacts array
         this.contacts.splice(index, 1);
-        // Update Local Storage
         localStorage.setItem('contacts', JSON.stringify(this.contacts));
       }
     },
   },
   async mounted() {
-    // Retrieve selected sorting option from localStorage on component mount
     let selectedOption = localStorage.getItem('selectedSortingOption');
     if (selectedOption) {
       this.selectedSortingOption = selectedOption;
@@ -87,29 +107,11 @@ export default {
 }
 </script>
 
-<template>
-  <div>
-    <form id="form-contact-search">
-      <input v-model="searching" type="search" id="contact-search" placeholder="Search...">
-    </form>
-
-    <select v-model="selectedSortingOption" @change="handleSorting">
-      <option v-for="(option, index) in sortingOptions" :key="index" :value="option.value">{{ option.message }}</option>
-    </select>
-
-    <ul class="contacts">
-      <li v-for="contact in sortedContacts" :key="contact.id">
-        <div class="contact">
-          <div class="name">
-            <RouterLink :to="contact.route">{{ contact.nameLast }}, {{ contact.nameFirst }}</RouterLink>
-          </div>
-
-          <div class="buttons">
-            <Button btnClass="edit"/>
-            <Button btnClass="delete" @click="deleteContact(contact.id)"/>
-          </div>
-        </div>
-      </li>
-    </ul>
-  </div>
-</template>
+<style scoped>
+  .functionality {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.00rem;
+  }
+</style>

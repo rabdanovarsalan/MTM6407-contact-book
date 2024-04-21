@@ -1,12 +1,10 @@
 <script setup>
 import { defineProps, ref } from 'vue';
 
-// Define props
 const props = defineProps({
   btnClass: String,
 });
 
-// Compute the icon class based on btnClass
 const iconClass = ref('');
 
 const assignIconClass = () => {

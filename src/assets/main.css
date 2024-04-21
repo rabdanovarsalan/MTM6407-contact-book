@@ -55,7 +55,7 @@ table {
 .container {
   margin: 0 auto;
   padding: 1rem;
-  width: min(100% - 2rem, 45rem);
+  width: min(100% - 2rem, 30rem);
 }
 
 .show {
@@ -84,6 +84,24 @@ body, html {
   text-align: center;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+footer {
+  padding-top: 1rem;
+  border-top: 1px solid #e3e3e3;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
 header, main, footer {
   margin: 1rem 0;
 }
@@ -94,10 +112,40 @@ code {
   background-color: #e3e3e3;
 }
 
-#form-contact-search {
-  display: flex;
-  justify-content: center;
-  gap: 0.25rem;
+input {
+  border: 1px solid #e3e3e3;
+  padding: 0.25rem 0.5rem;
+  min-width: 15rem;
+}
+
+select, button {
+  max-width: 15rem;
+}
+
+button, select {
+  padding: 0.5rem 0.5rem;
+  color: #707070 !important;
+  border-radius: 0.25rem;
+  border: 1px solid #e3e3e3;
+  background-color: white;
+  color: #969696;
+  transition: border ease-out 0.3s;
+}
+button:hover, button:focus, select:hover, select:focus {
+  transition: border 0.1s;
+  color: inherit;
+}
+button:hover:hover, button:hover:focus, button:focus:hover, button:focus:focus, select:hover:hover, select:hover:focus, select:focus:hover, select:focus:focus {
+  border-color: #005096;
+  color: white;
+}
+button:active, select:active {
+  transition: border 0.1s;
+  color: inherit;
+}
+button:active:hover, button:active:focus, select:active:hover, select:active:focus {
+  border-color: #005096;
+  color: white;
 }
 
 .contacts {
@@ -126,7 +174,7 @@ code {
   font-size: 1.5rem;
 }
 .contact .buttons .edit, .contact .buttons .delete {
-  width: 2.5rem;
+  width: 2.5rem !important;
   height: 2.5rem;
   border-radius: 0.25rem;
   border: 1px solid #e3e3e3;
@@ -171,6 +219,13 @@ code {
   border-color: black;
   background-color: black;
   color: white;
+}
+
+#new-contact, #edit-contact {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 /*# sourceMappingURL=main.css.map */

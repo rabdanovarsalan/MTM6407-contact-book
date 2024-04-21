@@ -5,7 +5,7 @@
       "nameFirst": "Arsalan",
       "nameLast": "Rabdanov",
       "email": "rabd0001@algonquinlive.com",
-      "phone": "+1 (613) 890-3963",
+      "phone": "(613) 890-3963",
       "route": "/contact/1"
     },
     {
@@ -13,7 +13,7 @@
       "nameFirst": "Alan",
       "nameLast": "Wake",
       "email": "alanwake@darkplace.com",
-      "phone": "+1 (123) 246-1112",
+      "phone": "(123) 246-1112",
       "route": "/contact/2"
     },
     {
@@ -21,7 +21,7 @@
       "nameFirst": "Mike",
       "nameLast": "Enslin",
       "email": "mikeenslin@roomofhell.com",
-      "phone": "+1 (666) 999-1408",
+      "phone": "(666) 999-1408",
       "route": "/contact/3"
     }
   ]
